@@ -3,6 +3,11 @@ server:
 spring:
   application:
     name: Notification-Manager
+  #DB Config
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/notificationdb
+      database: notificationdb
   kafka:
     bootstrap-servers: localhost:9092
     ## Kafka consumer config
@@ -12,7 +17,12 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
-
+  ### Email Configs
+  email:
+    host: smtp.gmail.com
+    port: 587
+    username: surajyadav020406@gmail.com
+    password: qgvimnwrimqtsnsf
 
 ## SMS API Config
 fast2sms:
@@ -20,6 +30,7 @@ fast2sms:
     key: Oin6Qf9Yg4Va2tlsqhTku3IDdFMvAJ8jmZPHpXrbRUeBWwN5ESK9mIaxMCbLfq5PFuGoNJ1yWQ7gpZjR
   base:
     uri: https://www.fast2sms.com/dev
+
 cable:
   event-types:
     USER_REGISTRATION_EVENT: user-registration-topic

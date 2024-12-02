@@ -1,5 +1,7 @@
-package com.bridge.skill.notificationmanager.service;
+package com.bridge.skill.notificationmanager.service.impl;
 
+import com.bridge.skill.notificationmanager.model.BaseEventRequest;
+import com.bridge.skill.notificationmanager.service.intf.ISMSNotifier;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -23,15 +25,7 @@ public class Fast2SMSServiceProvider implements ISMSNotifier {
     }
 
     @Override
-    public Mono<Void> notify(Object message) {
-        String payload = "sender_id=FSTSMS&message=" + message + "&route=otp&numbers=9667555245";
-        this.webClient.post()
-                .uri("/bulkV2")
-                .header("authorization" , smsApiKey)
-                .body(BodyInserters.fromValue(message))
-                .retrieve()
-                .bodyToMono(String.class)
-                .onErrorReturn("Error sending SMS");
+    public Mono<Void> notify(final BaseEventRequest baseEventRequest) {
 
         return null;
     }
