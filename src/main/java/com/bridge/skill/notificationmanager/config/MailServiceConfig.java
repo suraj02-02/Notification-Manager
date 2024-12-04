@@ -1,11 +1,13 @@
 package com.bridge.skill.notificationmanager.config;
 
+import jakarta.annotation.PostConstruct;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+
 import java.util.Properties;
 
 /**
@@ -25,7 +27,13 @@ public class MailServiceConfig {
     private String host;
     private int port;
     private String username;
+    // For now getting the value of SMTP password from system environment to avoid security conflicts
     private String password;
+
+    @PostConstruct
+    public void init() {
+        this.password = System.getenv("EMAIL_PASSWORD");
+    }
 
     /**
      * <code>JavaMailSender</code> bean for sending emails through SMTP configured.
