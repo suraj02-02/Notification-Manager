@@ -1,7 +1,6 @@
 package com.bridge.skill.notificationmanager.model;
 
 import com.bridge.skill.notificationmanager.constants.EventType;
-import lombok.Builder;
 import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.UUID;
